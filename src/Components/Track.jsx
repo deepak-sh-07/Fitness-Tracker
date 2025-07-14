@@ -1,0 +1,59 @@
+import Navbar from './Navbar';
+import useStore from '../usestore';
+import VolumeChart from './VolumeChart';
+import cross from '../assets/cross.svg';
+import styles from './Track.module.css';
+import { useState } from 'react';
+
+function Track() {
+    const [exercise, setExercise] = useState("");
+    const {updateDaily } = useStore();
+    const handleSelect = (part) => {
+        document.querySelector(`.${styles.editInfo}`).style.opacity = "1";
+        document.querySelector(`.${styles.editInfo}`).style.display = "block";
+        document.querySelector(`.${styles.exercises}`).style.opacity = "0";
+        document.querySelector(`.${styles.exercises}`).style.display = "none";
+        setExercise(part);
+    }
+    const closeinput = () => {
+        document.querySelector(`.${styles.editInfo}`).style.opacity = "0";
+        document.querySelector(`.${styles.editInfo}`).style.display = "none";
+        document.querySelector(`.${styles.exercises}`).style.opacity = "1";
+        document.querySelector(`.${styles.exercises}`).style.display = "flex";
+    }
+
+    return (
+        <div className={styles.container}>
+            <Navbar />
+            <div className={styles.content}>
+                <div className={styles.select}>
+                    <div className={styles.msg}>Track Your Progress</div>
+                    <div className={styles.exercises}>
+                        <div className={styles.Back} onClick={() => handleSelect("Back")}>Back</div>
+                        <div className={styles.Chest} onClick={() => handleSelect("Chest")}>Chest</div>
+                        <div className={styles.Shoulder} onClick={() => handleSelect("Shoulder")}>Shoulder</div>
+                        <div className={styles.Legs} onClick={() => handleSelect("Legs")}>Legs</div>
+                        <div className={styles.Bisceps} onClick={() => handleSelect("Bisceps")}>Bisceps</div>
+                        <div className={styles.Triceps} onClick={() => handleSelect("Triceps")}>Triceps</div>
+                        <div className={styles.Forearms} onClick={() => handleSelect("Forearms")}>Forearms</div>
+                    </div>
+                    <div className={styles.editInfo}>
+                        <div className={styles.name}>{exercise}</div>
+                        <div className={styles.Dummy}>
+                            <div className={styles.list}>
+                                <div className={styles.cross}>
+                                    <img onClick={closeinput} src={cross} alt="close" style={{ cursor: "pointer" }} />
+                                </div>
+                                <VolumeChart data={updateDaily[exercise]} />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div className={styles.update}></div>
+            </div>
+        </div>
+    );
+}
+
+export default Track;

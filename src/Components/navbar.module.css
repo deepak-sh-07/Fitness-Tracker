@@ -1,0 +1,13 @@
+.header{ 
+    height: 10vh;
+    width:100%;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(31, 25, 25);
+    color: bisque;
+}
