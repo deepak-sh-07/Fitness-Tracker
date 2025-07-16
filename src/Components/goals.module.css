@@ -45,8 +45,8 @@
     align-items: center;
 }
 .goals{
-    height: 200px;
-    width: 200px;
+    height: 210px;
+    width: 230px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,12 +94,47 @@ li{
 .exerciseList li{
     width: 250px;
 }
-.cross{
+.cross_input{
     position: absolute;
-    right: 90px;
+    right: 60px;
     cursor: pointer;
     transition: opacity 0.5s ease-in-out;
+}.cross_input img{
+    filter: invert();
 }
 .goalItem{
     display: flex;
+}
+.bar{
+    position: absolute;
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+.sidebar{
+    display: none;
+    position: absolute;
+    opacity: 0;
+    height: 85%;
+    width: 25%;
+    border-radius: 5px;
+    background-color:rgb(30, 23, 23)
+}
+.cross{
+   position: absolute;
+   right: 3px; 
+   cursor: pointer;
+}
+.cross img {
+  filter: invert(1);
+  transition: filter 0.3s ease;
+}
+
+.sidebarlist{
+    margin-top: 25px;
+    padding: 5px;
+}
+.sidebarlist div{
+    margin:15px 0px 0px 5px;
+    cursor: pointer;
+    color: bisque;
 }

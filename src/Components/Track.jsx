@@ -1,7 +1,15 @@
 import Navbar from './Navbar';
 import useStore from '../usestore';
 import VolumeChart from './VolumeChart';
+import { useNavigate } from 'react-router-dom';
+import bar from '../assets/hamburger.svg';
 import cross from '../assets/cross.svg';
+import home from '../assets/home.svg';
+import workout from '../assets/workout.svg';
+import edit from '../assets/edit.svg';
+import update from '../assets/update.svg';
+import goals from '../assets/goals.svg';
+import track from '../assets/track.svg';
 import styles from './Track.module.css';
 import { useState } from 'react';
 
@@ -21,12 +29,55 @@ function Track() {
         document.querySelector(`.${styles.exercises}`).style.opacity = "1";
         document.querySelector(`.${styles.exercises}`).style.display = "flex";
     }
-
+    const navigate = useNavigate();
+        const training = "Push Day";
+        const handlehome = () =>{
+            navigate("/");
+            closesidebar;
+        }
+        const handleworkout = () => {
+            navigate("/workout");
+        };
+        const handlegoals = () => {
+            navigate("/goals");
+        };
+        const handleupdate = () => {
+            navigate("/update");
+        };
+        const handleTrack=()=>{
+            navigate("/track");
+        };
+        const opensidebar = ()=>{
+            document.querySelector(`.${styles.sidebar}`).style.opacity = "1";
+            document.querySelector(`.${styles.sidebar}`).style.display = "block";
+            document.querySelector(`.${styles.bar}`).style.opacity = "0";
+        }
+        const closesidebar = ()=>{
+            document.querySelector(`.${styles.sidebar}`).style.opacity = "0";
+            document.querySelector(`.${styles.sidebar}`).style.display = "none";
+            document.querySelector(`.${styles.bar}`).style.opacity = "1";
+        }
     return (
         <div className={styles.container}>
             <Navbar />
             <div className={styles.content}>
                 <div className={styles.select}>
+                    <div className={styles.sidebar}>
+                                        <div className={styles.cross}>
+                                                     <img src={cross} onClick={closesidebar} />
+                                                    </div>
+                                        <div className={styles.sidebarlist}>
+                                        <div onClick={handlehome}><img src={home}/> Home</div>
+                                        <div onClick={handleworkout}><img src={workout}/> Workouts</div>
+                                        <div onClick={handleupdate}><img src={update}/> Update</div>
+                                        <div onClick={handlegoals}><img src={goals}/> Goals</div>
+                                        <div onClick={handleTrack}><img src={track}/> Track Progress</div>
+                                        <div><img src={edit}/> Edit Training plan</div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.bar}>
+                                        <img src={bar} onClick={opensidebar}/>
+                                    </div>
                     <div className={styles.msg}>Track Your Progress</div>
                     <div className={styles.exercises}>
                         <div className={styles.Back} onClick={() => handleSelect("Back")}>Back</div>
@@ -41,7 +92,7 @@ function Track() {
                         <div className={styles.name}>{exercise}</div>
                         <div className={styles.Dummy}>
                             <div className={styles.list}>
-                                <div className={styles.cross}>
+                                <div className={styles.cross_input}>
                                     <img onClick={closeinput} src={cross} alt="close" style={{ cursor: "pointer" }} />
                                 </div>
                                 <VolumeChart data={updateDaily[exercise]} />
