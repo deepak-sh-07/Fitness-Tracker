@@ -3,6 +3,7 @@ import useStore from '../usestore';
 import Navbar from './Navbar';
 import bar from '../assets/hamburger.svg';
 import cross from '../assets/cross.svg';
+import clear from '../assets/clear.svg';
 import home from '../assets/home.svg';
 import workout from '../assets/workout.svg';
 import edit from '../assets/edit.svg';
@@ -72,7 +73,9 @@ const navigate = useNavigate();
     document.querySelector(`.${styles.input}`).style.opacity = "0";
     document.querySelector(`.${styles.exercises}`).style.display = "flex";
   };
-
+  const handlereset = () =>{
+    localStorage.clear();
+  }
   return (
     <div className={styles.container}>
       <Navbar />
@@ -88,6 +91,7 @@ const navigate = useNavigate();
                             <div onClick={handlegoals}><img src={goals}/> Goals</div>
                             <div onClick={handleTrack}><img src={track}/> Track Progress</div>
                             <div><img src={edit}/> Edit Training plan</div>
+                            <div onClick={handlereset}><img src={clear}/> Reset all data</div>
                             </div>
                         </div>
                         <div className={styles.bar}>

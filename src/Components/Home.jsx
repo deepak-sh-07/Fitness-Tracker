@@ -2,6 +2,7 @@ import styles from './Home.module.css';
 import { useNavigate } from 'react-router-dom';
 import bar from '../assets/hamburger.svg';
 import cross from '../assets/cross.svg';
+import clear from '../assets/clear.svg';
 import home from '../assets/home.svg';
 import workout from '../assets/workout.svg';
 import edit from '../assets/edit.svg';
@@ -39,6 +40,9 @@ function Home() {
         document.querySelector(`.${styles.sidebar}`).style.display = "none";
         document.querySelector(`.${styles.bar}`).style.opacity = "1";
     }
+     const handlereset = () =>{
+    localStorage.clear();
+  }
     return (
         <div className={styles.container}>
             <Navbar />
@@ -54,6 +58,7 @@ function Home() {
                     <div onClick={handlegoals}><img src={goals}/> Goals</div>
                     <div onClick={handleTrack}><img src={track}/> Track Progress</div>
                     <div><img src={edit}/> Edit Training plan</div>
+                    <div onClick={handlereset}><img src={clear}/> Reset all data</div>
                     </div>
                 </div>
                 <div className={styles.bar}>
